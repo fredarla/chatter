@@ -4,13 +4,17 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [hiccup.page :as page]))
 
-(defroutes app-routes
-  (GET "/" []
+(defn generate-message-view
+  "This generates the HTML for displaying messages"
+  []
        (page/html5
         [:head
-         [title "chatter"]]
+         [:title "chatter"]]
         [:body
-         [h1 "Our Chat App"]]))
+         [:h1 "Our Chat App"]]))
+
+(defroutes app-routes
+  (GET "/" [] (generate-message-view))
   (route/not-found "Not Found"))
 
 (def app
